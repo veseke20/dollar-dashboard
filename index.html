@@ -65,43 +65,36 @@ button{
 
 
 <script> 
-async function updateDollar(){
 
-document.getElementById("info").innerHTML="در حال دریافت..."
+    async function updateDollar(){
+
+document.getElementById("info").innerHTML="تست اتصال..."
 
 try{
 
-let response = await fetch(
-"https://open.er-api.com/v6/latest/USD"
-);
+let r = await fetch("https://jsonplaceholder.typicode.com/todos/1");
 
-let data = await response.json();
-
-let rial = data.rates.IRR;
-
-let toman = Math.round(rial / 10);
+let data = await r.json();
 
 document.getElementById("price").innerHTML =
-toman.toLocaleString("fa-IR") + " تومان";
-
+"اتصال OK";
 
 document.getElementById("info").innerHTML =
-"آخرین بروزرسانی: " +
-new Date().toLocaleTimeString("fa-IR");
+data.title;
 
 }
+
 catch(e){
 
 document.getElementById("price").innerHTML =
-"خطا در دریافت";
+"خطا";
 
 document.getElementById("info").innerHTML =
-"اتصال برقرار نشد";
+e.message;
 
 }
 
 }
-    
 </script>
 
 </body>
