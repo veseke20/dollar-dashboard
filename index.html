@@ -64,7 +64,7 @@ button{
 </div>
 
 
-<script>
+<script> 
 async function updateDollar(){
 
 document.getElementById("info").innerHTML="در حال دریافت قیمت..."
@@ -72,24 +72,22 @@ document.getElementById("info").innerHTML="در حال دریافت قیمت..."
 try{
 
 let response = await fetch(
-"https://api.allorigins.win/raw?url=https://www.tgju.org/"
+"https://api.exchangerate.host/latest?base=USD&symbols=IRR"
 );
 
-let text = await response.text();
+let data = await response.json();
 
-let match = text.match(/دلار.*?(\d{2,3},\d{3})/);
+let rial = data.rates.IRR;
 
-if(match){
+let toman = Math.round(rial / 10);
+
+
 document.getElementById("price").innerHTML =
-match[1] + " تومان";
-}
-else{
-document.getElementById("price").innerHTML =
-"قیمت پیدا نشد";
-}
+toman.toLocaleString("fa-IR") + " تومان";
+
 
 document.getElementById("info").innerHTML =
-"آخرین بروزرسانی: "+
+"آخرین بروزرسانی: " +
 new Date().toLocaleTimeString("fa-IR");
 
 }
@@ -99,15 +97,11 @@ document.getElementById("price").innerHTML =
 "خطا در دریافت";
 
 document.getElementById("info").innerHTML =
-"منبع پاسخ نداد";
+"اتصال برقرار نشد";
 
 }
 
 }
-
-updateDollar();
-
-setInterval(updateDollar,600000);
 </script>
 
 </body>
