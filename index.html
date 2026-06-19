@@ -73,16 +73,24 @@ document.getElementById("info").innerHTML="در حال دریافت..."
 try{
 
 let r = await fetch(
-"https://api.frankfurter.app/latest?from=USD&to=EUR"
+"https://api.allorigins.win/get?url=https://www.tgju.org/"
 );
 
 let data = await r.json();
 
+if(data.contents){
+
 document.getElementById("price").innerHTML =
-"دریافت شد";
+"داده دریافت شد";
 
 document.getElementById("info").innerHTML =
-"دلار تستی: " + data.rates.EUR;
+"اتصال به منبع برقرار است";
+
+}else{
+
+throw "empty";
+
+}
 
 }
 
@@ -92,7 +100,7 @@ document.getElementById("price").innerHTML =
 "خطا";
 
 document.getElementById("info").innerHTML =
-e.message;
+"اتصال برقرار نشد";
 
 }
 
