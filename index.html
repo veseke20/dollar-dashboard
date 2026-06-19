@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>داشبورد دلار</title>
+
+<style>
+body{
+    background:#111;
+    color:white;
+    font-family:tahoma;
+    text-align:center;
+    padding:40px;
+}
+.box{
+    background:#222;
+    border-radius:20px;
+    padding:30px;
+}
+h1{
+    color:#00ff88;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+<h1>💵 داشبورد دلار</h1>
+
+<p>سایت با موفقیت ساخته شد</p>
+
+<p id="time"></p>
+
+</div>
+
+
+<script>
+setInterval(()=>{
+document.getElementById("time").innerHTML =
+"زمان: " + new Date().toLocaleTimeString("fa-IR");
+},1000);
+</script>
+
+</body>
+</html>
