@@ -65,22 +65,24 @@ button{
 
 
 <script> 
+    
+async function updateDollar(){
 
-    async function updateDollar(){
-
-document.getElementById("info").innerHTML="تست اتصال..."
+document.getElementById("info").innerHTML="در حال دریافت..."
 
 try{
 
-let r = await fetch("https://jsonplaceholder.typicode.com/todos/1");
+let r = await fetch(
+"https://api.frankfurter.app/latest?from=USD&to=EUR"
+);
 
 let data = await r.json();
 
 document.getElementById("price").innerHTML =
-"اتصال OK";
+"دریافت شد";
 
 document.getElementById("info").innerHTML =
-data.title;
+"دلار تستی: " + data.rates.EUR;
 
 }
 
@@ -95,7 +97,7 @@ e.message;
 }
 
 }
-</script>
+    </script>
 
 </body>
 </html>
