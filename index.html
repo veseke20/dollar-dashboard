@@ -8,19 +8,38 @@
 
 <style>
 body{
-    background:#111;
+    background:#101010;
     color:white;
     font-family:tahoma;
     text-align:center;
-    padding:40px;
-}
-.box{
-    background:#222;
-    border-radius:20px;
     padding:30px;
 }
-h1{
+
+.card{
+    background:#222;
+    border-radius:20px;
+    padding:25px;
+    max-width:450px;
+    margin:auto;
+}
+
+.price{
+    font-size:42px;
     color:#00ff88;
+    margin:25px;
+}
+
+button{
+    background:#00ff88;
+    border:0;
+    padding:12px 25px;
+    border-radius:10px;
+    font-size:16px;
+}
+
+.info{
+    color:#aaa;
+    margin-top:15px;
 }
 </style>
 
@@ -28,21 +47,62 @@ h1{
 
 <body>
 
-<div class="box">
-<h1>💵 داشبورد دلار</h1>
+<div class="card">
 
-<p>سایت با موفقیت ساخته شد</p>
+<h2>💵 نرخ دلار</h2>
 
-<p id="time"></p>
+<div id="price" class="price">
+در حال دریافت...
+</div>
+
+<button onclick="updateDollar()">
+🔄 بروزرسانی
+</button>
+
+<div id="info" class="info"></div>
 
 </div>
 
 
 <script>
-setInterval(()=>{
-document.getElementById("time").innerHTML =
-"زمان: " + new Date().toLocaleTimeString("fa-IR");
-},1000);
+
+async function updateDollar(){
+
+document.getElementById("info").innerHTML="در حال دریافت..."
+
+
+try{
+
+/*
+فعلاً برای تست اتصال، زمان را نشان می‌دهیم.
+مرحله بعد منبع دلار آزاد را وصل می‌کنیم.
+*/
+
+document.getElementById("price").innerHTML =
+"آماده اتصال به داده زنده";
+
+
+document.getElementById("info").innerHTML =
+"آخرین بررسی: "+
+new Date().toLocaleTimeString("fa-IR");
+
+
+}
+
+catch(e){
+
+document.getElementById("price").innerHTML =
+"خطا";
+
+}
+
+}
+
+
+updateDollar();
+
+setInterval(updateDollar,600000);
+
 </script>
 
 </body>
