@@ -67,12 +67,12 @@ button{
 <script> 
 async function updateDollar(){
 
-document.getElementById("info").innerHTML="در حال دریافت قیمت..."
+document.getElementById("info").innerHTML="در حال دریافت..."
 
 try{
 
 let response = await fetch(
-"https://api.exchangerate.host/latest?base=USD&symbols=IRR"
+"https://open.er-api.com/v6/latest/USD"
 );
 
 let data = await response.json();
@@ -80,7 +80,6 @@ let data = await response.json();
 let rial = data.rates.IRR;
 
 let toman = Math.round(rial / 10);
-
 
 document.getElementById("price").innerHTML =
 toman.toLocaleString("fa-IR") + " تومان";
@@ -102,6 +101,7 @@ document.getElementById("info").innerHTML =
 }
 
 }
+    
 </script>
 
 </body>
